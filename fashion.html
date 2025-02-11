@@ -1,0 +1,366 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Amazon Clone - Fashion
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-gray-800 text-white">
+   <div class="container mx-auto flex items-center justify-between py-4 px-6">
+    <div class="flex items-center space-x-4">
+     <img alt="Amazon logo with text 'Amazon' in black on a white background" class="h-10" height="40" src="https://storage.googleapis.com/a1aa/image/rLJAA7JbW7jeSMLVOzEO3YS4cYGMCmHWG7pEc9Wv7Ko.jpg" width="100"/>
+     <div class="hidden md:flex items-center bg-yellow-400 text-black px-2 py-1 rounded">
+      <i class="fas fa-map-marker-alt">
+      </i>
+      <span class="ml-2">
+       Deliver to
+      </span>
+      <span class="font-bold ml-1">
+       User
+      </span>
+     </div>
+    </div>
+    <div class="flex-grow mx-4">
+     <div class="relative">
+      <input class="w-full py-2 px-4 rounded" placeholder="Search Amazon" type="text"/>
+      <button class="absolute right-0 top-0 h-full bg-yellow-400 text-black px-4 rounded-r">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+    </div>
+    <div class="flex items-center space-x-4">
+     <div class="hidden md:flex flex-col items-center">
+      <span>
+       Hello, Sign in
+      </span>
+      <span class="font-bold">
+       Account &amp; Lists
+      </span>
+     </div>
+     <div class="hidden md:flex flex-col items-center">
+      <span>
+       Returns
+      </span>
+      <span class="font-bold">
+       &amp; Orders
+      </span>
+     </div>
+     <div class="relative">
+      <i class="fas fa-shopping-cart text-2xl">
+      </i>
+      <span class="absolute top-0 right-0 bg-yellow-400 text-black rounded-full px-2 text-sm">
+       0
+      </span>
+     </div>
+    </div>
+   </div>
+   <nav class="bg-gray-700">
+    <div class="container mx-auto flex items-center space-x-4 py-2 px-6 text-sm">
+     <div class="flex items-center space-x-2">
+      <i class="fas fa-bars">
+      </i>
+      <span>
+       All
+      </span>
+     </div>
+     <span>
+      Today's Deals
+     </span>
+     <span>
+      Customer Service
+     </span>
+     <span>
+      Gift Cards
+     </span>
+     <span>
+      Registry
+     </span>
+     <span>
+      Sell
+     </span>
+    </div>
+   </nav>
+  </header>
+  <!-- Main Content -->
+  <main class="container mx-auto py-6 px-6">
+   <!-- Category Banner -->
+   <div class="relative">
+    <img alt="Fashion category banner with stylish clothing and accessories" class="w-full rounded" height="400" src="https://storage.googleapis.com/a1aa/image/3oTNILy56D1L4SnEdnBYUYT8gH_KMfx3xykSx7XyBKo.jpg" width="1200"/>
+    <div class="absolute inset-0 flex items-center justify-center">
+     <div class="bg-white bg-opacity-75 p-6 rounded-lg shadow-lg text-center">
+      <h1 class="text-4xl font-bold text-gray-800">
+       Fashion Highlights
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+       Discover the latest trends, styles, and must-haves in fashion. Elevate your wardrobe with our curated collections.
+      </p>
+      <button class="mt-6 bg-yellow-400 text-black py-2 px-4 rounded-full text-lg font-semibold">
+       Shop Now
+      </button>
+     </div>
+    </div>
+   </div>
+   <!-- Product Grid -->
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+    <!-- Product Card -->
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a stylish men's jacket" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/G-fkhMtXPdKFFJ6Nenh_dRyoeS24iQ-cwgnvoeTjqvs.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Men's Jacket
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹2,499
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <!-- Repeat Product Card for more products -->
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a women's saree dress" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/2pqqaVNDf6aoGbgziRNjgtngreRrGL4A5yxd0Pr_ngQ.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Women's Saree Dress
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹1,999
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a pair of men's shoes" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/hh1o7mMAfzcncEh11fD3y88YJM_umsGx49c-HQqWohA.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Men's Shoes
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹3,499
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a women's handbag" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/KMAHbODiPtjoTgYS0r8fec9mPQuwZcWn9WJ_QIInBvA.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Women's Handbag
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹1,299
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a men's watch" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/2pqqaVNDf6aoGbgziRNjgtngreRrGL4A5yxd0Pr_ngQ.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Men's Watch
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹4,999
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a women's scarf" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/XjSqtSMb-Xr343luU4tRLEq97eeNUoAVv_JNYNK3JY0.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Women's Scarf
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹799
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a pair of men's sunglasses" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/hh1o7mMAfzcncEh11fD3y88YJM_umsGx49c-HQqWohA.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Men's Sunglasses
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹1,499
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a women's necklace" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/KMAHbODiPtjoTgYS0r8fec9mPQuwZcWn9WJ_QIInBvA.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Women's Necklace
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹2,999
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a men's belt" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/3oTNILy56D1L4SnEdnBYUYT8gH_KMfx3xykSx7XyBKo.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Men's Belt
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹999
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a women's hat" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/2pqqaVNDf6aoGbgziRNjgtngreRrGL4A5yxd0Pr_ngQ.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Women's Hat
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹1,299
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a men's wallet" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/G-fkhMtXPdKFFJ6Nenh_dRyoeS24iQ-cwgnvoeTjqvs.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Men's Wallet
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹1,499
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+     <img alt="Product image of a women's bracelet" class="w-full h-48 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/KMAHbODiPtjoTgYS0r8fec9mPQuwZcWn9WJ_QIInBvA.jpg" width="200"/>
+     <h2 class="mt-4 text-lg font-bold">
+      Women's Bracelet
+     </h2>
+     <p class="mt-2 text-gray-600">
+      ₹2,499
+     </p>
+     <button class="mt-4 w-full bg-yellow-400 text-black py-2 rounded">
+      Add to Cart
+     </button>
+    </div>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+   <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div>
+     <h3 class="font-bold mb-2">
+      Get to Know Us
+     </h3>
+     <ul>
+      <li>
+       Careers
+      </li>
+      <li>
+       Blog
+      </li>
+      <li>
+       About Amazon
+      </li>
+      <li>
+       Investor Relations
+      </li>
+      <li>
+       Amazon Devices
+      </li>
+     </ul>
+    </div>
+    <div>
+     <h3 class="font-bold mb-2">
+      Make Money with Us
+     </h3>
+     <ul>
+      <li>
+       Sell products on Amazon
+      </li>
+      <li>
+       Sell on Amazon Business
+      </li>
+      <li>
+       Sell apps on Amazon
+      </li>
+      <li>
+       Become an Affiliate
+      </li>
+      <li>
+       Advertise Your Products
+      </li>
+     </ul>
+    </div>
+    <div>
+     <h3 class="font-bold mb-2">
+      Amazon Payment Products
+     </h3>
+     <ul>
+      <li>
+       Amazon Rewards Visa Signature Cards
+      </li>
+      <li>
+       Amazon.in Store Card
+      </li>
+      <li>
+       Amazon Business Card
+      </li>
+      <li>
+       Amazon Business Line of Credit
+      </li>
+      <li>
+       Shop with Points
+      </li>
+     </ul>
+    </div>
+    <div>
+     <h3 class="font-bold mb-2">
+      Let Us Help You
+     </h3>
+     <ul>
+      <li>
+       Amazon and COVID-19
+      </li>
+      <li>
+       Your Account
+      </li>
+      <li>
+       Your Orders
+      </li>
+      <li>
+       Shipping Rates &amp; Policies
+      </li>
+      <li>
+       Returns &amp; Replacements
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="mt-6 text-center">
+    <img alt="Amazon logo with text 'Amazon' in black on a white background" class="mx-auto h-10" height="40" src="https://storage.googleapis.com/a1aa/image/rLJAA7JbW7jeSMLVOzEO3YS4cYGMCmHWG7pEc9Wv7Ko.jpg" width="100"/>
+    <p class="mt-2">
+     © 2023 Amazon Clone. All rights reserved.
+    </p>
+   </div>
+  </footer>
+ </body>
+</html>
