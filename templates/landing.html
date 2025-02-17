@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Prixmalin</title>
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, rgba(76, 76, 76, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%), 
+                        url('/api/placeholder/1920/1080') center/cover;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .display-1 {
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1.5rem;
+            font-size: 4.5rem;
+        }
+
+        .lead {
+            font-size: 1.8rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ff9900, #ffc107);
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+        }
+
+        .btn-outline-light {
+            border-width: 2px;
+            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block title %}Welcome{% endblock %}
+
+    {% block content %}
+    <div class="hero-section d-flex align-items-center justify-content-center">
+        <div class="hero-content text-center text-white">
+            <h1 class="display-1">Welcome to Prixmalin</h1>
+            <p class="lead">Discover amazing products at great prices</p>
+            <div class="d-flex justify-content-center gap-4">
+                <a href="{{ url_for('register') }}" class="btn btn-warning btn-lg">Get Started</a>
+                <a href="{{ url_for('home') }}" class="btn btn-outline-light btn-lg">Browse Products</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
