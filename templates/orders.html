@@ -1,0 +1,55 @@
+<!------------------------------------------------------------------------>
+<!--                                                                    -->
+<!--   I used Claude Sonnet 3.5 to add Bootstrap classes to elements.   -->
+<!--                                                                    -->
+<!------------------------------------------------------------------------>
+
+
+{% extends "base.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    {% if not orders %}
+    <div class="alert alert-info">
+        You haven't placed any orders yet. <a href="{{ url_for('home') }}" class="alert-link">Start shopping</a>
+    </div>
+    {% else %}
+    <div class="row">
+        {% for order in orders %}
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-1">Order #{{ order.id }}</h5>
+                            <p class="text-muted mb-1">Placed on {{ order.order_date }}</p>
+                            <p class="text-muted mb-0">{{ order.item_count }} item{% if order.item_count != 1 %}s{% endif %}</p>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="mb-1">₹{{ "%.2f"|format(order.total_amount) }}</h6>
+                            <span class="badge bg-{{ 'warning' if order.status == 'Processing' else 'success' }}">
+                                {{ order.status }}
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            <i class="bi bi-geo-alt"></i>
+                            Shipping to: {{ order.shipping_address }}
+                        </small>
+                        <a href="{{ url_for('order_detail', order_id=order.id) }}" class="btn btn-warning btn-sm">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

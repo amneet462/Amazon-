@@ -1,0 +1,70 @@
+<!------------------------------------------------------------------------>
+<!--                                                                    -->
+<!--   I used Claude Sonnet 3.5 to add Bootstrap classes to elements.   -->
+<!--                                                                    -->
+<!------------------------------------------------------------------------>
+
+
+{% extends "base.html" %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Shopping Cart</h4>
+            </div>
+            <div class="card-body">
+                {% if cart_items %}
+                    {% for item in cart_items %}
+                        <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                            {% if item.image_url %}
+                                <img src="{{ item.image_url }}" alt="{{ item.name }}" class="img-thumbnail me-3" style="width: 100px;">
+                            {% else %}
+                                <img src="https://via.placeholder.com/100" alt="Placeholder" class="img-thumbnail me-3">
+                            {% endif %}
+                            <div class="flex-grow-1">
+                                <h5 class="mb-1">{{ item.name }}</h5>
+                                <p class="mb-1 text-muted">₹{{ "%.2f"|format(item.price) }} x {{ item.quantity }}</p>
+                                <p class="mb-0"><strong>Subtotal: ₹{{ "%.2f"|format(item.price * item.quantity) }}</strong></p>
+                            </div>
+                            <div>
+                                <a href="{{ url_for('remove_from_cart', item_id=item.cart_item_id) }}" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-4">
+                        <i class="bi bi-cart-x display-1 text-muted"></i>
+                        <h5 class="mt-3">Your cart is empty</h5>
+                        <a href="{{ url_for('home') }}" class="btn btn-primary mt-3">Continue Shopping</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Order Summary</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Total:</span>
+                    <strong>₹{{ "%.2f"|format(total) }}</strong>
+                </div>
+                {% if cart_items %}
+                    <a href="{{ url_for('checkout') }}" class="btn btn-success w-100">
+                        Proceed to Checkout
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

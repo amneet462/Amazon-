@@ -1,0 +1,227 @@
+<!------------------------------------------------------------------------>
+<!--                                                                    -->
+<!--   I used Claude Sonnet 3.5 to add Bootstrap classes to elements.   -->
+<!--                                                                    -->
+<!------------------------------------------------------------------------>
+
+
+{% extends "base.html" %}
+
+{% block title %}{{ product['name'] }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Product Details -->
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ url_for('static', filename='images/products/' + product['name'] + '.jpg') }}"
+                 class="img-fluid rounded"
+                 alt="{{ product['name'] }}"
+                 style="max-height: 400px; width: 100%; object-fit: contain;">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ product['name'] }}</h2>
+            <p class="text-muted">By {{ product['manufacturer'] }}</p>
+
+            <!-- Rating Stars -->
+            <div class="mb-2">
+                {% for i in range(5) %}
+                    {% if product['avg_rating'] and i < (product['avg_rating']|round|int) %}
+                        <i class="bi bi-star-fill text-warning"></i>
+                    {% else %}
+                        <i class="bi bi-star text-warning"></i>
+                    {% endif %}
+                {% endfor %}
+                <small class="text-muted">({{ product['review_count'] if product['review_count'] else 0 }} reviews)</small>
+            </div>
+
+            <h3 class="text-primary mb-3">₹{{ "%.2f"|format(product['price']) }}</h3>
+            <p class="text-success mb-4"><i class="bi bi-check-circle-fill"></i> In Stock</p>
+
+            <!-- Action Buttons -->
+            <div class="d-grid gap-2">
+                {% if session.get('user_id') %}
+                    <form action="{{ url_for('add_to_cart', product_id=product['id']) }}" method="post">
+                        <button type="submit" class="btn btn-warning btn-lg w-100 mb-2">
+                            <i class="bi bi-cart-plus"></i> Add to Cart
+                        </button>
+                    </form>
+                    <form action="{{ url_for('add_to_cart', product_id=product['id']) }}" method="post">
+                        <input type="hidden" name="buy_now" value="1">
+                        <button type="submit" class="btn btn-warning btn-lg w-100">
+                            <i class="bi bi-lightning-fill"></i> Buy Now
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-warning btn-lg">
+                        Login to Buy
+                    </a>
+                {% endif %}
+            </div>
+
+            <!-- Product Description -->
+            <div class="mt-4">
+                <h4>Product Description</h4>
+                <p>{{ product['description'] }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Similar Products -->
+    {% if similar_products %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h4 class="mb-4">Similar Products</h4>
+        </div>
+        {% for similar in similar_products %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <a href="{{ url_for('product_detail', product_id=similar['id']) }}" class="text-decoration-none">
+                    <div class="bg-light text-center p-4" style="height: 200px;">
+                        <img src="{{ url_for('static', filename='images/products/' + similar['name'] + '.jpg') }}"
+                             class="img-fluid h-100"
+                             alt="{{ similar['name'] }}"
+                             style="object-fit: contain;">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title text-dark">{{ similar['name'] }}</h6>
+                        <p class="card-text text-muted mb-2">{{ similar['manufacturer'] }}</p>
+                        <div class="mb-2">
+                            {% for i in range(5) %}
+                                {% if similar['avg_rating'] and i < (similar['avg_rating']|round|int) %}
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                {% else %}
+                                    <i class="bi bi-star text-warning"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h6 mb-0">₹{{ "%.2f"|format(similar['price']) }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Reviews Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h4 class="mb-4">Customer Reviews</h4>
+
+            <!-- Add Review Form -->
+            {% if session.get('user_id') %}
+            <div class="mb-4">
+                <form action="{{ url_for('add_review', product_id=product['id']) }}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Rating</label>
+                        <div class="rating">
+                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Your Review</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <!-- Display Reviews -->
+            {% if reviews %}
+                {% for review in reviews %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="mb-1">{{ review['author'] }}</h6>
+                                <div class="mb-2">
+                                    {% for i in range(5) %}
+                                        {% if review['rating'] and i < review['rating'] %}
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                        {% else %}
+                                            <i class="bi bi-star text-warning"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <p class="card-text">{{ review['body'] }}</p>
+                            </div>
+                            <small class="text-muted">
+                                {{ review['release_date'] }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No reviews yet. Be the first to review this product!</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+    .rating > input {
+        display: none;
+    }
+
+    .rating > label {
+        position: relative;
+        width: 1em;
+        font-size: 2em;
+        color: #ffd700;
+        cursor: pointer;
+    }
+
+    .rating > label::before {
+        content: "\2605";
+        position: absolute;
+        opacity: 0;
+    }
+
+    .rating > label:hover:before,
+    .rating > label:hover ~ label:before {
+        opacity: 1 !important;
+    }
+
+    .rating > input:checked ~ label:before {
+        opacity: 1;
+    }
+
+    .rating:hover > input:checked ~ label:before {
+        opacity: 0.4;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ratingInputs = document.querySelectorAll('.rating input[type="radio"]');
+        const selectedRatingDiv = document.querySelector('.selected-rating');
+
+        ratingInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                selectedRatingDiv.textContent = `Selected rating: ₹{this.value} stars`;
+            });
+        });
+    });
+</script>
+{% endblock %}
