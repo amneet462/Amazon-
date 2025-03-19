@@ -1,8 +1,4 @@
-Note: This is a copy of the final project I submitted for CS50x 2024
-***
-# Amazon Clone
-#### Video Demo:  https://www.youtube.com/watch?v=02sUwO-qNaE
-#### Description:
+
 This project is a clone of Amazon built using Flask, a lightweight Python web framework. The website replicates core functionalities of Amazon.com, providing users with a familiar e-commerce experience. Users can create accounts, browse products, manage their shopping carts, place orders, and write product reviews.
 
 ![Amazon Clone](static/images/image.png)
